@@ -4,8 +4,7 @@ services:
   db:
     image: mysql:8.0
     container_name: escuela-db
-    restart_policy:
-      condition: unless-stopped
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: escuela
@@ -28,8 +27,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: agenda
-    restart_policy:
-      condition: unless-stopped
+    restart: unless-stopped
     depends_on:
       - db
     networks:
@@ -40,8 +38,7 @@ services:
       context: .
       dockerfile: nginx.Dockerfile
     container_name: agenda-php
-    restart_policy:
-      condition: unless-stopped
+    restart: unless-stopped
     ports:
       - "8080:80"
     depends_on:
