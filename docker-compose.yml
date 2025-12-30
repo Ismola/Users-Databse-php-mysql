@@ -3,16 +3,12 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
-    container_name: escuela-db
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: escuela
       MYSQL_USER: Ismael
       MYSQL_PASSWORD: Ismola2002
-    volumes:
-      - "./Base de datos/escuela.sql:/docker-entrypoint-initdb.d/escuela.sql"
-      - db_data:/var/lib/mysql
     ports:
       - "3306:3306"
     healthcheck:
@@ -23,10 +19,10 @@ services:
       - cloudflare_default
       
   php:
+    image: agenda:latest
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: agenda
     restart: unless-stopped
     depends_on:
       - db
@@ -34,10 +30,10 @@ services:
       - cloudflare_default
 
   nginx:
+    image: agenda-nginx:latest
     build:
       context: .
       dockerfile: nginx.Dockerfile
-    container_name: agenda-php
     restart: unless-stopped
     ports:
       - "8080:80"
@@ -49,7 +45,4 @@ services:
 networks:
   cloudflare_default:
     external: true
-
-volumes:
-  db_data:
 
