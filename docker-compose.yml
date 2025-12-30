@@ -35,6 +35,7 @@ services:
       context: .
       dockerfile: nginx.Dockerfile
     restart: unless-stopped
+    container_name: agenda-php
     ports:
       - "8080:80"
     depends_on:
