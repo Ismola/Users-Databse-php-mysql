@@ -31,8 +31,7 @@ services:
     restart_policy:
       condition: unless-stopped
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     networks:
       - cloudflare_default
 
