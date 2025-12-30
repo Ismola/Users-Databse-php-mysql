@@ -45,12 +45,12 @@ services:
       - "8080:80"
     depends_on:
       - php
-#     networks:
-#       - cloudflare_default
+    networks:
+      - cloudflare_default
 
-# networks:
-#   cloudflare_default:
-#     external: true
+networks:
+  cloudflare_default:
+    external: true
 
 volumes:
   db_data:
