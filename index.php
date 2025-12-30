@@ -1,6 +1,6 @@
 <?php
 session_start();
-$server = "192.168.62.131";
+$server = "db";
 $user = "Ismael";
 $pwd = "Ismola2002";
 $db = "escuela";
